@@ -634,7 +634,7 @@ function custom_location_shortcode($atts, $content = null)
                 $newCity = $query->post->location
                 	? $query->post->location
                 	: the_title();
-                $ret = explode("", $newCity);
+                $ret = explode(",", $newCity);
                 ?>
                 <div class="col-lg-3 text-lg-start text-center">
                     <a class="no_hover_underline d-block text-lg-start text-center" href="<?php the_permalink(); ?>"><?php echo $ret[0]; ?></a> 
@@ -795,19 +795,15 @@ function get_multisite_site_titles()
 	}
 }
 
-function filter_search($query) {
-    if (!is_admin() && $query->is_search && $query->is_main_query()) { 
-        if (is_home()) {
-            // If it's the blog page, only show posts
-            $query->set('post_type', array('post'));
-        } else {
-            // If it's any other page, show posts and pages
-            $query->set('post_type', array('post', 'page'));
-        }
-    }
-    return $query;
+function filter_search($query)
+{
+	if (!is_admin() && $query->is_search) {
+		$query->set('post_type', array('post', 'page', 'bc_teams', 'bc_position', 'bc_promotions', 'bc_testimonials'));
+	}
+	return $query;
 }
-add_filter('pre_get_posts', 'filter_search');
+add_filter("pre_get_posts", "filter_search");
+
 /*function filter_search($query) {
     if (!is_admin() && $query->is_search && $query->is_main_query()) { 
         if (is_home()) {

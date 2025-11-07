@@ -160,8 +160,8 @@ if ( $data && is_numeric( $data['id'] ) ) {
             }
             $args['globals']['discover_the_difference']['button_link'] = $button_link;
             $args['globals']['discover_the_difference']['items'] = $items_Array;
-            $args['globals']['discover_the_difference']['heading'] = $settings['heading'];
-            $args['globals']['discover_the_difference']['subheading'] = $settings['subheading'];
+            $args['globals']['discover_the_difference']['heading'] = sanitize_text_field($settings['heading']);
+            $args['globals']['discover_the_difference']['subheading'] = sanitize_text_field($settings['subheading']);
             
             $args['globals']['discover_the_difference']['button_text'] = sanitize_text_field($settings['button_text']);
             

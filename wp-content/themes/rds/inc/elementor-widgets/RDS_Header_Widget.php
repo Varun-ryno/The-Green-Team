@@ -166,6 +166,7 @@ public $widgetPathFull;
                 "variation!" => ["a", "b", "c"],
             ],
         ]);
+
         $this->end_controls_section();
 
         $this->start_controls_section("desktop_schedule_online_h_button", [
